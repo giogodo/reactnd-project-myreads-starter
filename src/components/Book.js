@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Book extends React.Component {
+class Book extends Component {
   render() {
     const { book } = this.props;
     const width = 128;
@@ -39,13 +39,13 @@ class Book extends React.Component {
 
 Book.propTypes = {
   book: PropTypes.object
-}
+};
 
 Book.defaultProps = {
   book: {
     title: 'none',
     authors: 'none'
   }
-}
+};
 
 export default Book;
