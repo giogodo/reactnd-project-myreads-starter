@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import { Book, Bookshelf } from './components'
+import { Bookshelf } from './components'
 
 class BooksApp extends React.Component {
   state = {
@@ -22,11 +22,12 @@ class BooksApp extends React.Component {
       .then(books => this.setState({ books }));
   };
   // Life cycle methods
-  componentDidMount () {
+  componentDidMount() {
     this.getAllBooks()
   }
   render() {
-    console.log(this.state.books)
+    const { books } = this.state;
+    console.log(this.state.books);
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -57,18 +58,11 @@ class BooksApp extends React.Component {
               </div>
               <div className="list-books-content">
                 <div>
-                  <Bookshelf />
+                  <Bookshelf shelfType='currentlyReading' shelfLable='Currently Reading' books={books} />
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                       <ol className="books-grid">
-                        <li>
-                          <Book book={{
-                            title: 'To Kill a Mockingbird',
-                            authors: ['Harper Lee', 'another', 'Harper Lee', 'another'],
-                            imageLinks: { thumbnail: "http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api" }
-                          }} />
-                        </li>
                         <li>
                           <div className="book">
                             <div className="book-top">
