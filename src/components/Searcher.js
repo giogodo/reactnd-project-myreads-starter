@@ -20,17 +20,21 @@ class Searcher extends Component {
         ? this.setState({
           filteredBooks: filteredBooks
         })
-        : console.log("No matches found");
+        : this.setState({
+          filteredBooks: []
+        }, console.log("No matches found"));
     });
   };
   // Here the life cycle methods begin
   render() {
+    const { refreshBooks } = this.props;
     const { queryString, filteredBooks } = this.state
-    console.log(filteredBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => refreshBooks()}>
             <button className="close-search">Close</button>
           </Link>
           <div className="search-books-input-wrapper">
@@ -56,7 +60,7 @@ class Searcher extends Component {
 }
 
 Searcher.protoTypes = {
-
+  refreshBooks: PropTypes.func.isRequired
 };
 
 export default Searcher;

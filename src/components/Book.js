@@ -67,7 +67,7 @@ Book.defaultProps = {
     title: 'none',
     authors: 'none'
   },
-  refresh: () => console.log('No refresh method available...')
+  refresh: () => {}
 };
 
 export default Book;

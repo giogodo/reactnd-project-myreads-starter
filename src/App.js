@@ -72,7 +72,7 @@ class BooksApp extends React.Component {
         <Route
           path='/search'
           render={() => (
-            <Searcher/>
+            <Searcher refreshBooks={this.refreshBooks}/>
           )} />
       </div>
     );
