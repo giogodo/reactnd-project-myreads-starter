@@ -51,7 +51,7 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors.toString().replace(/,/g, ', ')}</div>
+        <div className="book-authors">{book.authors && book.authors.toString().replace(/,/g, ', ')}</div>
       </div>
     );
   }

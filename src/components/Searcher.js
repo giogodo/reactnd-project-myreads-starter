@@ -42,7 +42,13 @@ class Searcher extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {filteredBooks.map(book => (
+              <li key={book.id}>
+                <Book book={book} />
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     );
