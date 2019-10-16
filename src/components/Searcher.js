@@ -18,11 +18,26 @@ class Searcher extends Component {
     BooksAPI.search(queryString).then(filteredBooks => {
       filteredBooks && filteredBooks.length > 0
         ? this.setState({
-          filteredBooks: filteredBooks
+          filteredBooks: this.getShelfStatus(filteredBooks, this.props.books)
         })
         : this.setState({
           filteredBooks: []
         }, console.log("No matches found"));
+    });
+  };
+  /**
+   * @description If a book is on a shelf this method rewrite it in the filteredBook state, this way we get the shelf that contain it.
+   * @param filteredBooks - The filtered books returned by the API.
+   * @param currentBooks - The books on any of the three shelfs.
+   */
+  getShelfStatus = (filteredBooks, currentBooks) => {
+    return filteredBooks.map(filteredBook => {
+      return currentBooks.reduce((book, currentBook) => {
+        if (currentBook.id === filteredBook.id) {
+          return currentBook;
+        }
+        return book;
+      }, filteredBook);
     });
   };
   // Here the life cycle methods begin
