@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class Bookshelf extends Component {
   render() {
-    const { shelfType, shelfLable, books } = this.props;
+    const { shelfType, shelfLable, books, refreshBooks } = this.props;
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{shelfLable}</h2>
@@ -14,7 +14,7 @@ class Bookshelf extends Component {
               .filter(book => book.shelf === shelfType)
               .map(book => (
                 <li key={book.id}>
-                  <Book book={book} />
+                  <Book book={book} refresh={refreshBooks}/>
                 </li>
               ))}
           </ol>
@@ -27,7 +27,8 @@ class Bookshelf extends Component {
 Bookshelf.propTypes = {
   shelfType: PropTypes.string.isRequired,
   shelfLable: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  refreshBooks: PropTypes.func.isRequired
 };
 
 export default Bookshelf;

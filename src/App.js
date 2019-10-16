@@ -21,9 +21,15 @@ class BooksApp extends React.Component {
     BooksAPI.getAll()
       .then(books => this.setState({ books }));
   };
-  // Life cycle methods
+  /**
+   * @description
+   */
+  refreshBooks = () => {
+    this.getAllBooks();
+  }
+  // Here the life cycle methods begin
   componentDidMount() {
-    this.getAllBooks()
+    this.getAllBooks();
   }
   render() {
     const { books } = this.state;
@@ -58,9 +64,21 @@ class BooksApp extends React.Component {
               </div>
               <div className="list-books-content">
                 <div>
-                  <Bookshelf shelfType='currentlyReading' shelfLable='Currently Reading' books={books} />
-                  <Bookshelf shelfType='wantToRead' shelfLable='Want to Read' books={books} />
-                  <Bookshelf shelfType='read' shelfLable='Read' books={books} />
+                  <Bookshelf
+                    shelfType='currentlyReading'
+                    shelfLable='Currently Reading'
+                    books={books}
+                    refreshBooks={this.refreshBooks}/>
+                  <Bookshelf
+                    shelfType='wantToRead'
+                    shelfLable='Want to Read'
+                    books={books}
+                    refreshBooks={this.refreshBooks}/>
+                  <Bookshelf
+                    shelfType='read'
+                    shelfLable='Read'
+                    books={books}
+                    refreshBooks={this.refreshBooks}/>
                 </div>
               </div>
               <div className="open-search">
